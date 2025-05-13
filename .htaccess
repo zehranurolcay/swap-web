@@ -1,0 +1,62 @@
+RewriteRule ^$ index.php [L]
+RewriteRule ^login$ login.php [L]
+RewriteRule ^my-account$ my-account.php [L]
+RewriteRule ^404$ 404.php [L]
+RewriteRule ^wishlist$ wishlist.php [L]
+RewriteRule ^product-details$ product-details.php [L]
+RewriteRule ^deneme$ deneme.php [L]
+RewriteRule ^about$ about.php [L]
+RewriteRule ^faq$ faq.php [L]
+RewriteRule ^contact$ contact.php [L]
+RewriteRule ^product-category$ product-category.php [L]
+
+#DATABASE
+RewriteRule ^db/register$ database/db-register.php [L]
+RewriteRule ^db/login$ database/db-login.php [L]
+RewriteRule ^db/exit-login$ database/exit-login.php [L]
+RewriteRule ^db/change-password$ database/db-change-password.php [L]
+RewriteRule ^db/add-item$ database/db-add-item.php [L]
+RewriteRule ^db/edit-item$ database/db-edit-item.php [L]
+RewriteRule ^db/delete-item$ database/db-delete-item.php [L]
+RewriteRule ^db/add-item-img$ database/db-add-item-img.php [L]
+RewriteRule ^db/delete-item-img$ database/db-delete-item-img.php [L]
+RewriteRule ^db/wishlist$ database/db-wishlist.php [L]
+
+#APİ
+RewriteRule ^api/register$ api/register.php [L]
+RewriteRule ^api/login$ api/login.php [L]
+RewriteRule ^api/jwt$ api/security-jwt.php [L]
+RewriteRule ^api/change-password$ api/change-password.php [L]
+RewriteRule ^api/add-item$ api/add-item.php [L]
+RewriteRule ^api/add-item-app$ api/add-item-app.php [L]
+RewriteRule ^api/items$ api/items.php [L]
+RewriteRule ^api/edit-item$ api/edit-item.php [L]
+RewriteRule ^api/delete-item$ api/delete-item.php [L]
+RewriteRule ^api/add-item-img$ api/add-item-img.php [L]
+RewriteRule ^api/item-img$ api/item-images.php [L]
+RewriteRule ^api/delete-item-img$ api/delete-item-img.php [L]
+RewriteRule ^api/all-items$ api/all-items.php [L]
+RewriteRule ^api/wishlist$ api/wishlist.php [L]
+RewriteRule ^api/wishlist-status$ api/wishlist-status.php [L]
+RewriteRule ^api/wishlist-list$ api/wishlist-list.php [L]
+RewriteRule ^api/product-details$ api/product-details.php [L]
+RewriteRule ^api/seller-name$ api/seller-name.php [L]
+RewriteRule ^api/add-offer$ api/add-offer.php [L]
+RewriteRule ^api/offer-checked$ api/offer-checked.php [L]
+RewriteRule ^api/offers$ api/offers.php [L]
+RewriteRule ^api/offer-status$ api/offer-status.php [L]
+RewriteRule ^api/load-message$ api/load_message.php [L]
+RewriteRule ^api/users$ api/users.php [L]
+
+#OTHER OPERATIONS
+RewriteRule ^edit-item$ other-operations/edit-item.php [L]
+
+RewriteEngine on
+
+DirectoryIndex disabled
+
+RewriteCond %{THE_REQUEST} "^\sGET\s/$"
+RewriteRule ^ - [R=404,L]
+
+RewriteCond %{THE_REQUEST} ".php" [NC]
+RewriteRule ^ - [R=404,L]
