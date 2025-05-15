@@ -9,6 +9,7 @@ RewriteRule ^about$ about.php [L]
 RewriteRule ^faq$ faq.php [L]
 RewriteRule ^contact$ contact.php [L]
 RewriteRule ^product-category$ product-category.php [L]
+RewriteRule ^search-handler$ search-handler.php [L]
 
 #DATABASE
 RewriteRule ^db/register$ database/db-register.php [L]

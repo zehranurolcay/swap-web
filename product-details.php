@@ -271,6 +271,72 @@
 
 
     </style>
+        <style>
+        .header-search {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        #search-box {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #search-box:focus {
+            outline: none;
+            border-color:rgb(255, 132, 0);
+            box-shadow: 0 0 8px rgba(0,123,255,0.2);
+        }
+
+        #search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            z-index: 1000;
+            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        #search-results a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #f1f1f1;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        #search-results a:hover {
+            background: #f8f9fa;
+        }
+
+        #search-results img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        #search-results div {
+            font-size: 15px;
+            font-weight: 500;
+        }
+    </style>
 </head>
 
 <body>
@@ -328,15 +394,10 @@
                     </div><!-- End .header-left -->
 
                     <div class="header-right">
-                        <div class="header-search">
-                            <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
-                            <form action="#" method="get">
-                                <div class="header-search-wrapper">
-                                    <label for="q" class="sr-only">Search</label>
-                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
-                                </div><!-- End .header-search-wrapper -->
-                            </form>
-                        </div><!-- End .header-search -->
+                         <div class="header-search">
+                            <input type="search" class="form-control" id="search-box" placeholder="Ürün ara..." autocomplete="off">
+                            <div id="search-results"></div>
+                        </div>
 
                         <?php
                             if($jwt_security == true)
@@ -835,4 +896,23 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault(); 
             alert("Teklif vermek için giriş yapmanız gerekiyor!");
         }
+
+           ///ARAMA KISMI
+        $(document).ready(function() {
+            $('#search-box').on('input', function() {
+                var query = $(this).val();
+                if (query.length > 1) {
+                    $.ajax({
+                        url: '/search-handler',
+                        method: 'GET',
+                        data: { q: query },
+                        success: function(response) {
+                            $('#search-results').html(response);
+                        }
+                    });
+                } else {
+                    $('#search-results').html('');
+                }
+            });
+        });
     </script>
